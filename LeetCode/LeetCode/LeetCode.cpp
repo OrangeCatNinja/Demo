@@ -1,4 +1,4 @@
-﻿// Demo.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+// Demo.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 #include "include.h"
 
@@ -100,34 +100,44 @@ public:
 		return nNum;
 	}
 
-	//4.无重复字符的最长子串
+	//3.无重复字符的最长子串
 	int lengthOfLongestSubstring(std::string s) {
 		if (s.length() <= 0)
 			return 0;
 
 		int nCount = 0;
 		int nIndex = 0;
+		int nLastIndex = 0;
 
 		std::unordered_set<char> setChar;
-		setChar.insert(s.at(nIndex++));
+		setChar.insert(s.at(nLastIndex++));
 
-		while (nIndex < s.length())
+		while (nLastIndex < s.length())
 		{
-			if (setChar.find(s.at(nIndex)) != setChar.end())
+			if (setChar.count(s.at(nLastIndex)) != 0)
 			{
 				nCount = setChar.size() > nCount ? setChar.size() : nCount;
-				setChar.clear();
+				do 
+				{
+					setChar.erase(s.at(nIndex++));
+				} while (setChar.count(s.at(nLastIndex)));
 			}
-			setChar.insert(s.at(nIndex++));
+			setChar.insert(s.at(nLastIndex++));
 		}
 
 		nCount = setChar.size() > nCount ? setChar.size() : nCount;
 		return nCount;
+	}
+
+	//4.寻找两个正序数组的中位数
+	double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
+		int nMid = (nums1.size() + nums2.size()) / 2;
 	}
 };
 
 int main()
 {
 	Solution solt;
-	std::cout << solt.lengthOfLongestSubstring("dvdf") << std::endl;
+
+	return 0;
 }
