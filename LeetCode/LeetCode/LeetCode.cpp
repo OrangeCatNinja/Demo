@@ -131,13 +131,71 @@ public:
 
 	//4.寻找两个正序数组的中位数
 	double findMedianSortedArrays(std::vector<int>& nums1, std::vector<int>& nums2) {
-		int nMid = (nums1.size() + nums2.size()) / 2;
+		return 0;
+	}
+
+	//5. 最长回文子串
+	std::string longestPalindrome(std::string s) {
+		int nIndex = 0;
+		int nLast = s.length() - 1;
+		std::pair<int, int> maxLength(0, 0);
+
+		if (s.length() <= 1)
+			return s;
+
+		while (nIndex <= nLast
+			&& nLast < s.length())
+		{
+			nLast = s.find_last_of(s[nIndex], nLast);
+			if (nLast <= nIndex)
+			{
+				nIndex++;
+				nLast = s.length() - 1;
+				continue;
+			}
+
+			int nTempIndex = nIndex;
+			int nTempLast = nLast;
+			bool bSucess = true;
+			while (nTempIndex <= nTempLast)
+			{
+				if (s[++nTempIndex] != s[--nTempLast])
+				{
+					bSucess = false;
+					break;
+				}
+			}
+
+			if (bSucess)
+			{
+				if (maxLength.second - maxLength.first < nLast - nIndex)
+				{
+					maxLength.first = nIndex;
+					maxLength.second = nLast;
+					++nIndex;
+					nLast = s.length() - 1;
+				}
+				else
+				{
+					++nIndex;
+					nLast = s.length() - 1;
+				}
+			}
+			else
+			{
+				--nLast;
+			}
+		}
+
+		return s.substr(maxLength.first, maxLength.second - maxLength.first + 1);
 	}
 };
 
 int main()
 {
 	Solution solt;
+	
+	std::cout << solt.longestPalindrome("cbbd").c_str() << std::endl;
 
 	return 0;
 }
