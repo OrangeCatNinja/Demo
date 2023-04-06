@@ -189,13 +189,80 @@ public:
 
 		return s.substr(maxLength.first, maxLength.second - maxLength.first + 1);
 	}
+
+	//6. N 字形变换
+	std::string convert(std::string s, int numRows) {
+		if (s.length() <= 2 || s.length() <= numRows || numRows <= 1)
+			return s;
+
+		std::vector<std::string> vecStr(numRows);
+		int nIndex = 0;
+		int nOffset = 2 * numRows - 2;
+		for(int nCount = 1; nCount <= s.length() / nOffset + 1; ++nCount)
+		{
+			std::string strSub = s.substr(nIndex, nOffset);
+			for (int i = 0; i < numRows; ++i)
+			{
+				if (i < strSub.length())
+				{
+					vecStr[i] += strSub[i];
+					int nSubOffset = i + 2 * (numRows - 1 - i);
+					if (nSubOffset < strSub.length() && i != numRows - 1)
+						vecStr[i] += strSub[nSubOffset];
+				}
+			}
+
+			if (s.length() - (nCount + 1) * nOffset >= 0)
+				nIndex += nOffset;
+			else
+				nOffset = s.length() - nCount * nOffset;
+		}
+
+		std::string strRes;
+		for (int i = 0; i < numRows; ++i)
+		{
+			strRes += vecStr[i];
+		}
+		return strRes;
+	}
+
+	//11. 盛最多水的容器
+	int maxArea(std::vector<int>& height) {
+		if (height.size() < 2)
+			return 0;
+
+		int nIndex = 0;
+		int nLast = height.size() - 1;
+
+		int nMaxArea = 0;
+
+		while (nIndex < nLast)
+		{
+			int nHeight = height[nIndex] > height[nLast] ? height[nLast] : height[nIndex];
+			int nArea = (nLast - nIndex) * nHeight;
+			if (nMaxArea < nArea)
+				nMaxArea = nArea;
+
+			if (height[nIndex] < height[nLast])
+				++nIndex;
+			else
+				--nLast;
+		}
+
+		return nMaxArea;
+	}
+
+	//15. 三数之和
+	std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {
+
+	}
 };
 
 int main()
 {
 	Solution solt;
-	
-	std::cout << solt.longestPalindrome("cbbd").c_str() << std::endl;
+
+	std::cout << solt.convert("PAYPALISHIRING", 4).c_str() << std::endl;
 
 	return 0;
 }
