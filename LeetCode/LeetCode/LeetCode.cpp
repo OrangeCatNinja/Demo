@@ -254,7 +254,97 @@ public:
 
 	//15. 三数之和
 	std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {
+		std::vector<std::vector<int>> res;
+		
+		std::sort(nums.begin(), nums.end());
 
+		for (int i = 0; i < nums.size(); ++i)
+		{
+			if (nums[i] > 0)
+				break;
+
+			if(i > 0 && nums[i] == nums[i - 1])
+				continue;
+
+			int nFirst = i + 1;
+			int nLast = nums.size() - 1;
+
+			while (nFirst < nLast)
+			{
+				if (nFirst > i + 1 && nums[nFirst] == nums[nFirst - 1])
+				{
+					++nFirst;
+					continue;
+				}
+				if (nLast < nums.size() - 1 && nums[nLast] == nums[nLast + 1])
+				{
+					--nLast;
+					continue;
+				}
+
+				int nSum = nums[i] + nums[nFirst] + nums[nLast];
+				if (nSum == 0)
+				{
+					res.push_back({ nums[i], nums[nFirst++], nums[nLast--] });
+				}
+				else if(nSum > 0)
+				{
+					--nLast;
+				}
+				else if (nSum < 0)
+				{
+					++nFirst;
+				}
+			}
+		}
+
+
+		return res;
+	}
+
+	//17. 电话号码的字母组合
+	std::vector<std::string> letterCombinations(std::string digits) {
+		typedef std::vector<char> Alphabet;
+		const std::unordered_map<int, Alphabet> numCharMap = {
+			std::pair<int, Alphabet>(2,{'a', 'b', 'c'}),
+			std::pair<int, Alphabet>(3,{'d', 'e', 'f'}),
+			std::pair<int, Alphabet>(4,{'g', 'h', 'i'}),
+			std::pair<int, Alphabet>(5,{'j', 'k', 'l'}),
+			std::pair<int, Alphabet>(6,{'m', 'n', 'o'}),
+			std::pair<int, Alphabet>(7,{'p', 'q', 'r', 's'}),
+			std::pair<int, Alphabet>(8,{'t', 'u', 'v'}),
+			std::pair<int, Alphabet>(9,{'w', 'x', 'y', 'z'})
+		};
+
+		int nNum = 1;
+		for (int nIndex = 0; nIndex < digits.size(); ++nIndex)
+		{
+			std::unordered_map<int, Alphabet>::const_iterator numCharItr = numCharMap.find(digits[nIndex] - '0');
+			if(numCharItr == numCharMap.end())
+				continue;
+
+			nNum *= numCharItr->second.size();
+		}
+		std::vector<std::string> vecRes(nNum);
+
+		for (int nIndex = 0; nIndex < digits.size(); ++nIndex)
+		{
+			std::unordered_map<int, Alphabet>::const_iterator numCharItr = numCharMap.find(digits[nIndex] - '0');
+			if (numCharItr == numCharMap.end())
+				continue;
+
+			Alphabet::const_iterator charItr = numCharItr->second.begin();
+
+			const Alphabet& charVec = numCharItr->second;
+			for (int i = 0; i < nNum; ++i)
+			{
+				int nTempIndex = i % charVec.size();
+				if(i < 3)
+				vecRes[i] += charVec[i % charVec.size()];
+			}
+		}
+
+		return vecRes;
 	}
 };
 
@@ -262,7 +352,7 @@ int main()
 {
 	Solution solt;
 
-	std::cout << solt.convert("PAYPALISHIRING", 4).c_str() << std::endl;
+
 
 	return 0;
 }
