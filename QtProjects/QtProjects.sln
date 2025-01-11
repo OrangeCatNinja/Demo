@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.2092
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtCustomWidget", "QtCustomWidget\QtCustomWidget.vcxproj", "{0BB5B2B1-D1E1-4EB2-94BB-035201A656D9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FCCS", "FCCS\FCCS.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Raise3D", "Raise3D\Raise3D.vcxproj", "{0AD14FDE-5F51-4A97-B33C-3C4A1BECBC26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BB5B2B1-D1E1-4EB2-94BB-035201A656D9}.Debug|x86.ActiveCfg = Debug|Win32
+		{0BB5B2B1-D1E1-4EB2-94BB-035201A656D9}.Debug|x86.Build.0 = Debug|Win32
+		{0BB5B2B1-D1E1-4EB2-94BB-035201A656D9}.Release|x86.ActiveCfg = Release|Win32
+		{0BB5B2B1-D1E1-4EB2-94BB-035201A656D9}.Release|x86.Build.0 = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x86.ActiveCfg = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x86.Build.0 = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.ActiveCfg = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.Build.0 = Release|Win32
+		{0AD14FDE-5F51-4A97-B33C-3C4A1BECBC26}.Debug|x86.ActiveCfg = Debug|Win32
+		{0AD14FDE-5F51-4A97-B33C-3C4A1BECBC26}.Debug|x86.Build.0 = Debug|Win32
+		{0AD14FDE-5F51-4A97-B33C-3C4A1BECBC26}.Release|x86.ActiveCfg = Release|Win32
+		{0AD14FDE-5F51-4A97-B33C-3C4A1BECBC26}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {112BEF87-9479-4C5B-96E9-A8C1540E93B9}
+	EndGlobalSection
+EndGlobal

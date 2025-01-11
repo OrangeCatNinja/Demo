@@ -2,3 +2,12 @@
 .idea/HTTPDemo.iml
 .idea/modules.xml
 .idea/vcs.xml
+/QtProjects/.vs
+/QtProjects/FCCS/Debug
+/QtProjects/FCCS/GeneratedFiles/Debug
+/QtProjects/FCCS/GeneratedFiles/qrc_fccs.cpp
+/QtProjects/FCCS/GeneratedFiles
+*.user
+/QtProjects/QtCustomWidget/Debug
+/QtProjects/Raise3D/Debug
+/QtProjects/Raise3D/GeneratedFiles
