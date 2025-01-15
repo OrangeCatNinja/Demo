@@ -21,6 +21,15 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="QThread">
+      <UniqueIdentifier>{0e7de4b9-bf52-46d5-91f7-115024c4a1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLC">
+      <UniqueIdentifier>{a83b9b87-ff77-480a-8f84-954ddd5246ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Custom">
+      <UniqueIdentifier>{fbf74d18-9dd5-4bc4-8269-faf4455954ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="QtCustomWidget.qrc">
@@ -37,15 +46,69 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QtWidgetsDemo.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="QtThreadRun.cpp">
+      <Filter>QThread</Filter>
+    </ClCompile>
+    <ClCompile Include="QtObjectThread.cpp">
+      <Filter>QThread</Filter>
+    </ClCompile>
+    <ClCompile Include="QDlgThreadTimer.cpp">
+      <Filter>QThread</Filter>
+    </ClCompile>
+    <ClCompile Include="QDlgGLC.cpp">
+      <Filter>GLC</Filter>
+    </ClCompile>
+    <ClCompile Include="TDMSummaryTableWgt.cpp">
+      <Filter>GLC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QMainWin.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="QtWidgetsDemo.h">
+      <Filter>Custom</Filter>
+    </QtMoc>
+    <QtMoc Include="QtThreadRun.h">
+      <Filter>QThread</Filter>
+    </QtMoc>
+    <QtMoc Include="QtObjectThread.h">
+      <Filter>QThread</Filter>
+    </QtMoc>
+    <QtMoc Include="QDlgThreadTimer.h">
+      <Filter>QThread</Filter>
+    </QtMoc>
+    <QtMoc Include="QDlgGLC.h">
+      <Filter>GLC</Filter>
+    </QtMoc>
+    <QtMoc Include="TDMDetailDataForm.h">
+      <Filter>GLC</Filter>
+    </QtMoc>
+    <QtMoc Include="TDMSummaryTableWgt.h">
+      <Filter>GLC</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="QMainWin.ui">
       <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="QtWidgetsDemo.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="QDlgThreadTimer.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="QDlgGLC.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="TDMDetailDataForm.ui">
+      <Filter>GLC</Filter>
+    </QtUic>
+    <QtUic Include="TDMTrendChartForm.ui">
+      <Filter>GLC</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
