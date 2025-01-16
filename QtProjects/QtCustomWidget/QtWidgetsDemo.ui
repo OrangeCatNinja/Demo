@@ -10,6 +10,11 @@
     <height>400</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>30</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>QtWidgetsDemo</string>
   </property>
@@ -21,32 +26,62 @@
   <layout class="QGridLayout" name="gridLayout" columnstretch="5,5,1">
    <item row="0" column="0">
     <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>参数1</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QLineEdit" name="num1"/>
+    <widget class="QLineEdit" name="num1">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+    </widget>
    </item>
    <item row="0" column="2">
-    <widget class="QSpinBox" name="spinBoxNum1"/>
+    <widget class="QSpinBox" name="spinBoxNum1">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0">
     <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>参数2</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QLineEdit" name="num2"/>
-   </item>
-   <item row="1" column="2">
-    <widget class="QSpinBox" name="spinBoxNum2"/>
+    <widget class="QLineEdit" name="num2">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
+    </widget>
    </item>
    <item row="2" column="0">
     <widget class="QPushButton" name="btnCalculate">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>计算</string>
      </property>
@@ -54,11 +89,25 @@
    </item>
    <item row="2" column="1">
     <widget class="QLabel" name="result">
+     <property name="font">
+      <font>
+       <pointsize>50</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>0</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QSpinBox" name="spinBoxNum2">
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+      </font>
      </property>
     </widget>
    </item>

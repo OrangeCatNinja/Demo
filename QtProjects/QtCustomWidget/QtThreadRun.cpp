@@ -5,6 +5,7 @@ QtThreadRun::QtThreadRun(QObject *parent)
 	: QThread(parent)
 	, m_bIsWorking(false)
 	, m_bIsOver(false)
+	, m_nTime(0)
 {
 }
 

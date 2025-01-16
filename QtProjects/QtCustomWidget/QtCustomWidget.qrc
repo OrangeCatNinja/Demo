@@ -2,5 +2,6 @@
     <qresource prefix="/QtCustomWidget">
         <file alias="btnIcon">Resource/search_regular_indigo600.png</file>
         <file alias="template">Resource/image.png</file>
+        <file alias="line">Resource/line.png</file>
     </qresource>
 </RCC>

@@ -171,6 +171,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="QDlgGLC.cpp" />
+    <ClCompile Include="QDlgSelect.cpp" />
     <ClCompile Include="QDlgThreadTimer.cpp" />
     <ClCompile Include="QtObjectThread.cpp" />
     <ClCompile Include="QtThreadRun.cpp" />
@@ -184,6 +185,7 @@
     <ClCompile Include="TDMSummaryTableWgt.cpp" />
     <QtRcc Include="QtCustomWidget.qrc" />
     <QtUic Include="QDlgGLC.ui" />
+    <QtUic Include="QDlgSelect.ui" />
     <QtUic Include="QDlgThreadTimer.ui" />
     <QtUic Include="QMainWin.ui" />
     <ClCompile Include="QMainWin.cpp" />
@@ -203,6 +205,7 @@
     <QtMoc Include="QtObjectThread.h" />
     <QtMoc Include="QDlgThreadTimer.h" />
     <QtMoc Include="QDlgGLC.h" />
+    <QtMoc Include="QDlgSelect.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

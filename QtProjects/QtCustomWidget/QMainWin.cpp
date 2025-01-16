@@ -38,6 +38,10 @@ void QMainWin::InitData()
 	pItem->setData(0, Qt::ItemDataRole::UserRole, QVariant(WidgetType::enGLC));
 	pTopItem->addChild(pItem);
 
+	pItem = new QTreeWidgetItem(QStringList("界面展示"));
+	pItem->setData(0, Qt::ItemDataRole::UserRole, QVariant(WidgetType::enTDM));
+	pTopItem->addChild(pItem);
+
 	pTopItem->setExpanded(true);
 
 	//m_dlgCustom.setParent(this);
@@ -71,6 +75,8 @@ void QMainWin::ClickTree(QTreeWidgetItem *item, int column)
 	case enGLC:
 		m_pCurrentWidget = &m_wdgGlc;
 		break;
+	case enTDM:
+		m_pCurrentWidget = &m_wdgTdm;
 	default:
 		break;
 	}

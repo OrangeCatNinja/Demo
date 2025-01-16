@@ -5,12 +5,14 @@
 #include "QtWidgetsDemo.h"
 #include "QDlgThreadTimer.h"
 #include "QDlgGLC.h"
+#include "TDMSummaryTableWgt.h"
 
 enum WidgetType
 {
 	enCustom = 0,
 	enThread,
-	enGLC
+	enGLC,
+	enTDM
 };
 
 class QMainWin : public QDialog
@@ -34,6 +36,7 @@ private:
 	QtWidgetsDemo m_dlgCustom;
 	QDlgThreadTimer m_wdgThread;
 	QDlgGLC m_wdgGlc;
+	TDMSummaryTableWgt m_wdgTdm;
 
 	QWidget* m_pCurrentWidget;
 };

@@ -4,6 +4,8 @@
 #include <QComboBox>
 #include <QDialog>
 #include <QLineEdit>
+#include <QPushButton>
+#include "QDlgSelect.h"
 
 //单纯计数用
 int g_nItemNum = 0;
@@ -49,6 +51,8 @@ void QDlgGLC::InitTable()
 	QTableWidgetItem* pSpanItem = new QTableWidgetItem(firHeader);
 	pSpanItem->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 	pSpanItem->setBackgroundColor(QColor(128, 128, 128));
+	pSpanItem->setTextColor(QColor(0, 0, 0));
+	pSpanItem->setFlags(pSpanItem->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
 	ui.table->setItem(0, 0, pSpanItem);
 
 	int i = 0;
@@ -87,18 +91,18 @@ void QDlgGLC::InitData()
 	/************************************************************************/
 
 	//添加假数据
-	AddRow(false);
-	AddRow(true);
-	AddRow(false);
-	AddRow(false);
-	AddRow(true);
+	AddRow(0);
+	AddRow(1);
+	AddRow(0);
+	AddRow(0);
+	AddRow(1);
 }
 
 void QDlgGLC::InitSignalSlot()
 {
 }
 
-void QDlgGLC::AddRow(bool collapse)
+void QDlgGLC::AddRow(int type, QTableWidgetItem* pInfo)
 {
 	QTableWidgetItem* pItem = nullptr;
 	int nCurRow = ui.table->rowCount();
@@ -106,12 +110,25 @@ void QDlgGLC::AddRow(bool collapse)
 
 	// 1	Item
 	pItem = new QTableWidgetItem(GetItemContent());
+	pItem->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+	QTableWidgetItem* pItemInfo = pItem;
+	QVariant var;
+	ItemInfo info(type);
 	ui.table->setItem(nCurRow, 0, pItem);
-	if (collapse)
+
+	if (1 == type)
 	{
-		ui.table->setCellWidget(nCurRow, 0, CreateCollapseItem(3, pItem->text()));
+		ui.table->setCellWidget(nCurRow, 0, CreateCollapseItem(type, pItem->text()));
 		pItem->setText("");
 	}
+	else if (2 == type)
+	{
+		pItem->setIcon(QIcon(":/QtCustomWidget/line"));
+		info.pItem = pInfo;
+	}
+
+	var = QVariant::fromValue(info);
+	pItem->setData(Qt::UserRole, var);
 
 	// 2	Item
 	pItem = new QTableWidgetItem(GetItemContent());
@@ -133,10 +150,10 @@ void QDlgGLC::AddRow(bool collapse)
 	ui.table->setItem(nCurRow, 4, pItem);
 	ui.table->setCellWidget(nCurRow, 4, CreatePushButton());
 
-	if (collapse)
+	if (1 == type)
 	{
 		for (int i = 0; i < 3; ++i)
-			AddRow(false);
+			AddRow(2, pItemInfo);
 	}
 }
 
@@ -165,6 +182,8 @@ QWidget * QDlgGLC::CreateButtonItem(const QString& text)
 	pLayout->addWidget(pLabel);
 	pLayout->addWidget(pBtn);
 
+	connect(pBtn, &QPushButton::clicked, this, &QDlgGLC::ShowSelectWidget);
+
 	pWidget->setLayout(pLayout);
 
 	return pWidget;
@@ -177,19 +196,22 @@ QWidget * QDlgGLC::CreatePushButton()
 
 	QPushButton* pBtn = new QPushButton("删除");
 
+	connect(pBtn, &QPushButton::clicked, this, &QDlgGLC::RemoveItem);
+
 	pLayout->addWidget(pBtn);
 	pWidget->setLayout(pLayout);
 
 	return pWidget;
 }
 
-QWidget * QDlgGLC::CreateCollapseItem(int nCollapseRows, const QString& text)
+QWidget * QDlgGLC::CreateCollapseItem(int type, const QString& text)
 {
 	QWidget* pWidget = new QWidget();
 	QHBoxLayout* pLayout = new QHBoxLayout();
 
 	QPushButton* pBtn = new QPushButton("+");
 	pBtn->setFixedSize(20, 20);
+	connect(pBtn, &QPushButton::clicked, this, &QDlgGLC::Collapse);
 
 	QLabel* pLabel = new QLabel(text);
 	pLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -210,6 +232,116 @@ void QDlgGLC::ShowPicture()
 	w.exec();
 }
 
+void QDlgGLC::ShowSelectWidget()
+{
+	QPushButton* pBtn = dynamic_cast<QPushButton*>(this->sender());
+	if (nullptr == pBtn)
+		return;
+
+	QPoint pt = pBtn->parentWidget()->pos();
+
+	QModelIndex idx = ui.table->indexAt(pt);
+	m_nCurRow = idx.row();
+
+	QDlgSelect w;
+	connect(&w, &QDlgSelect::SigSure, this, &QDlgGLC::ChangeSelectedItem);
+	w.exec();
+}
+
+void QDlgGLC::ChangeSelectedItem(const QString & text)
+{
+	QWidget* pWidget = ui.table->cellWidget(m_nCurRow, 3);
+	if (nullptr == pWidget)
+		return;
+
+	auto pItem = pWidget->layout()->itemAt(0);
+	QLabel* pLabel = qobject_cast<QLabel*>(pItem->widget());
+	if (nullptr != pLabel)
+		pLabel->setText(text);
+}
+
+void QDlgGLC::RemoveItem()
+{
+	QPushButton* pBtn = dynamic_cast<QPushButton*>(this->sender());
+	if (nullptr == pBtn)
+		return;
+
+	QPoint pt = pBtn->parentWidget()->pos();
+
+	QModelIndex idx = ui.table->indexAt(pt);
+	m_nCurRow = idx.row();
+
+	QTableWidgetItem* pItem = ui.table->item(m_nCurRow, 0);
+	if (nullptr == pItem)
+		return;
+
+	QVariant var = pItem->data(Qt::UserRole);
+	ItemInfo info = var.value<ItemInfo>();
+
+	if (0 == info.type)
+	{
+		ui.table->removeRow(m_nCurRow);
+	}
+	else if (2 == info.type)
+	{
+		if (!info.pItem)
+			return;
+
+		QVariant var = info.pItem->data(Qt::UserRole);
+		ItemInfo infoTemp = var.value<ItemInfo>();
+		infoTemp.nCollapseNum -= 1;
+		info.pItem->setData(Qt::UserRole, QVariant::fromValue(infoTemp));
+
+		ui.table->removeRow(m_nCurRow);
+	}
+	else if (1 == info.type)
+	{
+		for (int i = 0; i < info.nCollapseNum + 1; ++i)
+		{
+			int nCount = ui.table->rowCount();
+			ui.table->removeRow(m_nCurRow);
+		}
+	}
+	else
+		return;
+}
+
+void QDlgGLC::Collapse()
+{
+	QPushButton* pBtn = dynamic_cast<QPushButton*>(this->sender());
+	if (nullptr == pBtn)
+		return;
+
+	QPoint pt = pBtn->parentWidget()->pos();
+
+	QModelIndex idx = ui.table->indexAt(pt);
+	m_nCurRow = idx.row();
+
+	QTableWidgetItem* pItem = ui.table->item(m_nCurRow, 0);
+	if (nullptr == pItem)
+		return;
+
+	QVariant var = pItem->data(Qt::UserRole);
+	ItemInfo info = var.value<ItemInfo>();
+
+	info.bCollapse = !info.bCollapse;
+	if (info.bCollapse)
+	{
+		pBtn->setText("-");
+
+		for(int i = 1; i <= info.nCollapseNum; ++i)
+			ui.table->hideRow(m_nCurRow + i);
+	}
+	else
+	{
+		pBtn->setText("+");
+
+		for (int i = 1; i <= info.nCollapseNum; ++i)
+			ui.table->showRow(m_nCurRow + i);
+	}
+
+	pItem->setData(Qt::UserRole, QVariant::fromValue(info));
+}
 
 
 QString GetItemContent()

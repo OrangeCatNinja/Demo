@@ -62,6 +62,9 @@
       <Filter>GLC</Filter>
     </ClCompile>
     <ClCompile Include="TDMSummaryTableWgt.cpp">
+      <Filter>Custom</Filter>
+    </ClCompile>
+    <ClCompile Include="QDlgSelect.cpp">
       <Filter>GLC</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,9 +88,12 @@
       <Filter>GLC</Filter>
     </QtMoc>
     <QtMoc Include="TDMDetailDataForm.h">
-      <Filter>GLC</Filter>
+      <Filter>Custom</Filter>
     </QtMoc>
     <QtMoc Include="TDMSummaryTableWgt.h">
+      <Filter>Custom</Filter>
+    </QtMoc>
+    <QtMoc Include="QDlgSelect.h">
       <Filter>GLC</Filter>
     </QtMoc>
   </ItemGroup>
@@ -105,9 +111,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="TDMDetailDataForm.ui">
-      <Filter>GLC</Filter>
+      <Filter>Custom</Filter>
     </QtUic>
     <QtUic Include="TDMTrendChartForm.ui">
+      <Filter>Custom</Filter>
+    </QtUic>
+    <QtUic Include="QDlgSelect.ui">
       <Filter>GLC</Filter>
     </QtUic>
   </ItemGroup>
