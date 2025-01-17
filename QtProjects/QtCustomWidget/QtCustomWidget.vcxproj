@@ -193,6 +193,7 @@
     <QtUic Include="QtWidgetsDemo.ui" />
     <QtUic Include="TDMDetailDataForm.ui" />
     <QtUic Include="TDMTrendChartForm.ui" />
+    <QtUic Include="Test.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QMainWin.h" />
