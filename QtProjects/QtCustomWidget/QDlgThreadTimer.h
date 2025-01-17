@@ -16,7 +16,7 @@ public:
 public slots:
 	void on_btnThreadStart_clicked();
 	void on_btnThreadEnd_clicked();
-	//void on_btnThreadOver_clicked();
+	void on_btnOver_clicked();
 
 	void on_btnObjectStart_clicked();
 	void on_btnObjectEnd_clicked();
@@ -30,8 +30,8 @@ signals:
 private:
 	Ui::QDlgThreadTimerClass ui;
 
-	QtThreadRun m_threadRun;
-	QtObjectThread m_threadObject;
+	QtThreadRun* m_threadRun;
+	QtObjectThread* m_threadObject;
 
-	QThread m_threadForObj;
+	QThread* m_threadForObj;
 };

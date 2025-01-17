@@ -60,6 +60,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="btnOver">
+       <property name="text">
+        <string>终止</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item row="1" column="1">
