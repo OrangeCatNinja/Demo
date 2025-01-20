@@ -16,7 +16,7 @@ QtWidgetsDemo::QtWidgetsDemo(QWidget *parent)
 	hide();
 
 	connect(m_pBtn, &QPushButton::clicked, this, &QtWidgetsDemo::CalculateResult);
-	connect(m_pBtn, SIGNAL(QPushButton::clicked), this, SLOT(QtWidgetsDemo::CalculateResult));
+	connect(m_pBtn, SIGNAL(clicked()), this, SLOT(CalculateResult()));
 	connect(ui.spinBoxNum1, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &QtWidgetsDemo::SpinValueChange_1);
 	connect(ui.spinBoxNum2, static_cast<void(QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &QtWidgetsDemo::SpinValueChange_2);
 }
